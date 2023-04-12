@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import Items from './components/Items/Items';
+import { useEffect, useState } from 'react';
 
 function App() {
+  const [basket, setBasket] = useState([]);
+
+  const addToBasket = (item) => {
+    if (basket.length !== 0) {
+      setBasket([...basket, item]);
+    } else {
+      setBasket([item]);
+    } 
+  }
+
+  useEffect(() => {console.log(basket)}, [basket]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='wrapper'>
+      <Header basket={basket}/>
+      <Items onAdd={addToBasket}/>
+      <Footer />
     </div>
   );
 }
