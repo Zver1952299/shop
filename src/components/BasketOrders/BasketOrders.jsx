@@ -1,9 +1,11 @@
 import React from 'react';
+import { FaTrashAlt } from 'react-icons/fa';
 
 import styles from './BasketOrders.module.css';
 
-function BasketOrders({item}) {
-  const {title, image, price} = item;
+function BasketOrders({item, deleteFormBasket}) {
+
+  const {title, image, price, id} = item;
 
   return (
     <div className={styles.item}>
@@ -11,9 +13,15 @@ function BasketOrders({item}) {
             className={styles.img} 
             src={image} 
             alt={title}
-        ></img>
-        <h2 className={styles.text}>{title.length > 20 ? `${title.slice(0, 20)}...` : title}</h2>
-        <b>{price}$</b>
+        />
+        <div className={styles.info}>
+            <h2 className={styles.text}>{title.length > 30 ? `${title.slice(0, 30)}...` : title}</h2>
+            <b>{price}$</b>
+        </div>
+        <FaTrashAlt 
+          className={styles.trash}
+          onClick={() => deleteFormBasket(id)}
+        />
     </div>
   )
 }

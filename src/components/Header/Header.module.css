@@ -37,10 +37,11 @@ header {
     height: 400px;
     background-blend-mode: multiply;
     background-color: #bcbcbc;
+    box-shadow: 2px 2px 13px -2px rgba(34, 60, 80, 0.2);
 }
 
 .intro::after {
-    content: 'The best for your style';
+    content: 'The best for your life';
     position: absolute;
     top: 70px;
     left: 50px;
@@ -48,6 +49,7 @@ header {
     font-size: 40px;
     font-weight: 600;
     color: white;
+    text-shadow: 3px 3px 10px #000000;
 }
 
 .intro::before {
@@ -58,10 +60,12 @@ header {
     width: 200px;
     font-size: 12px;
     font-weight: 400;
-    color: rgb(255, 255, 255, 0.8)
+    color: rgb(255, 255, 255, 0.8);
+    text-shadow: 3px 3px 10px #000000;
 }
 
 .shopBasketBtn {
+    position: relative;
     margin-left: 15px;
     width: 20px;
     height: 20px;
@@ -74,14 +78,48 @@ header {
     transform: scale(1.3);
 }
 
+.shopBasketBtn:hover ~ .basketAmount,
+.shopBasketBtn.active ~ .basketAmount {
+    transform: translate(1px, -1px)
+}
+
 .shopBasket {
     position: absolute;
-    top: 73px;
-    right: 0;
-    width: 350px;
+    top: 50px;
+    right: 30px;
+    max-width: 350px;
     padding: 20px;
     padding-bottom: 0;
     background-color: #fff;
     box-shadow: 0px 4px 30px 3px rgba(0, 0, 0, 0.2);
+    border-radius: 20px 0 20px 20px;
     z-index: 100;
+}
+
+.basketAmount {
+    position: absolute;
+    top: 2px;
+    right: 0;
+    font-size: 12px;
+    text-align: center;
+    color: #fff;
+    background: #924700;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    border-radius: 50%;
+    transition: transform .3s linear;
+}
+
+.nothing {
+    padding-bottom: 20px;
+    font-size: 12px;
+    text-align: center;
+
+}
+
+.sum {
+    padding-bottom: 10px;
+    font-weight: 600;
+    font-size: 25px;
 }

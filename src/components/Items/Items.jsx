@@ -1,39 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-import { getApiResourse } from '../../services/network';
 import Item from '../Item/Item';
 
 import PropTypes from 'prop-types';
 import styles from './Items.module.css';
 
-function Items({onAdd}) {
-    const [items, setItems] = useState([]);
-    const [errorApi, setErrorApi] = useState([]);
-
-    const getResourse = async (url) => {
-        const res = await getApiResourse(url);
-
-        if (res) {
-            const itemList = res.map(({id, title, description, price, image}) => {
-                return {
-                    id,
-                    title,
-                    description,
-                    price,
-                    image
-                }
-            })
-        
-            setItems(itemList);
-            setErrorApi(false);
-        } else {
-            setErrorApi(true);
-        }
-    }
-
-    useEffect(() => {
-        getResourse('https://fakestoreapi.com/products/')
-    }, [])
+function Items({items, onAdd, onShowItem}) {
 
     return (
         <main className={styles.main}>
@@ -42,6 +14,7 @@ function Items({onAdd}) {
                     key={item.id} 
                     item={item}
                     onAdd={onAdd}
+                    onShowItem={onShowItem}
                 />
             ))}
         </main>
